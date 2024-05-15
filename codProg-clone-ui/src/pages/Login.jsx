@@ -3,6 +3,7 @@ import { Form } from "react-router-dom";
 export async function loginAction({ request }) {
   console.log(request);
   const data = await request.formData()
+  console.log('data', data);// This gives us an object with get value in its prototype
   const credentails = {
     email: data.get("email"),
     password: data.get("password")
