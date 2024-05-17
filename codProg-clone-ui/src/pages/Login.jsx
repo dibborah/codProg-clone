@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Form } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import { LOGIN_URL, SUPABASE_API_KEY } from "../constants";
 
 export const loginAction = async ({ request }) => {
@@ -12,23 +12,35 @@ export const loginAction = async ({ request }) => {
   // console.log(credentails);
   // request
   try {
-    const response = await axios.post(LOGIN_URL, JSON.stringify(credentails), {// This are configurations as a 3rd parameter
-      headers : {
+    const response = await axios.post(LOGIN_URL, JSON.stringify(credentails), {
+      // This are configurations as a 3rd parameter
+      headers: {
+        // apiKey: SUPABASE_API_KEY + "ijhbb",
         apiKey: SUPABASE_API_KEY,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
     const { access_token, refresh_token, expires_at } = response.data;
     const user = { access_token, refresh_token, expires_at };
     console.log(user);
+    // redirect to homePage
+    return redirect("/"); // redirect is always to be return// If something is not working one reason can be you are not returning it or anything
   } catch (error) {
-    console.log(error);    
+    if (error.response.request.status === 400) {
+      console.log(error.response);
+      console.log("Wrong username or password");
+      return { error: "Wrong username or password" };
+    } else {
+      console.log(error.message); // Less detailed
+      console.log(error.response.data.message); // Detailed
+      return { error: error?.response?.data?.message || error?.message };
+    }
   }
-
-  return null;
 };
 
 function Login() {
+  const data = useActionData();
+  console.log(data);
   return (
     <Form method="POST" action="/login">
       <div>
@@ -52,10 +64,19 @@ function Login() {
       <div>
         <input type="submit" value="login" />
       </div>
+      {data && data.error && <p>{data.error}</p>}
     </Form>
   );
 }
 
+
 export default Login;
 
-// endpoint ke .../v1 => Is the Base URL
+/**
+  <p>{data?.error}</p>// We be emptity evalutes in HTML DOM Elements unnecessarily
+ * 
+ * undefined never evaluates
+ *    {data?.error}
+endpoint ke .../v1 => Is the Base URL
+*/
+
