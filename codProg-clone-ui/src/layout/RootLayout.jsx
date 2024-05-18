@@ -12,6 +12,9 @@ function RootLayout() {
             <NavLink to={"about"}>About</NavLink>
           </li>
           <li>
+            <NavLink to={"profile"}>Profile</NavLink>
+          </li>
+          <li>
             <NavLink to={"signup"}>Signup</NavLink>
           </li>
           <li>
@@ -19,9 +22,6 @@ function RootLayout() {
           </li>
           <li>
             <NavLink to={"my-courses"}>MyCourses</NavLink>
-          </li>
-          <li>
-            <NavLink to={"profile"}>Profile</NavLink>
           </li>
         </ul>
       </nav>

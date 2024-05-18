@@ -1,10 +1,10 @@
 import { getUser } from "./getUser";
 import { redirect } from "react-router-dom";
 
-export const requireAuth = async ({pathname}) => {
+export const requireAuth = async ({redirectTo}) => {
   const user = await getUser();
-  if(user){
-    return null;
+  if(user === null){
+    // throw breaks the execution in the line it is executed
+    throw redirect(`/login?redirectTo=${redirectTo}`);// query parameter || search parameter
   }
-  throw redirect(`/login?redirectTo=${pathname}`);// query parameter || search parameter
-}
+} 

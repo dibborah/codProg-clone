@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Form, redirect, useActionData, useLocation } from "react-router-dom";
+import { Form, redirect, useActionData, useLocation, useNavigation } from "react-router-dom";
 import { LOGIN_URL, SUPABASE_API_KEY } from "../constants";
 import { getUser } from "../utils/getUser";
 
@@ -71,8 +71,11 @@ export const loginAction = async ({ request }) => {
 
 function Login() {
   const data = useActionData();
+  const navigation = useNavigation();
   const location = useLocation();
   const loginURL = location.pathname + location.search;
+  console.log('navigation', navigation);
+  const isSubmitting = navigation.state === 'submitting';
   return (
     // replace word replace kar dega current page ko aane wale page se
     <Form method="POST" action={loginURL} replace>
@@ -96,7 +99,7 @@ function Login() {
         />
       </div>
       <div>
-        <input type="submit" value="login" />
+        <input type="submit" value={isSubmitting ? 'Submitting...' : 'Login'} disabled={isSubmitting}/>
       </div>
       {data && data.error && <p>{data.error}</p>}
     </Form>
