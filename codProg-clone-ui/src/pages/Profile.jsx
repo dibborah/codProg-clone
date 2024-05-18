@@ -1,13 +1,9 @@
-import { redirect } from "react-router-dom";
-import { getUser } from "../utils/getUser";
+import { requireAuth } from "../utils/requireAuth";
 
 export const profileLoader = async ({request}) => {
   const pathname = new URL(request.url).pathname;
-  const user = await getUser();
-  if(user){
-    return null;
-  }
-  return redirect(`/login?redirectTo=${pathname}`);
+  await requireAuth({pathname});
+  return null;
 };
 
 const Profile = () => {
