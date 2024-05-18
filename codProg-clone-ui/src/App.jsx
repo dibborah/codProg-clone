@@ -7,14 +7,14 @@ import {
 
 import { About, Home, Login, MyCourses, Signup } from "./pages";
 import RootLayout from "./layout/RootLayout";
-import { loginAction } from "./pages/Login";
+import { loginAction, loginLoader } from "./pages/Login";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout/>}>
       <Route index element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/login" element={<Login />} action={loginAction}/>
+      <Route path="/login" element={<Login />} action={loginAction} loader={loginLoader}/>
       <Route path="signup" element={<Signup />} />
       <Route path="/mycourses" element={<MyCourses />} />
     </Route>
