@@ -1,12 +1,15 @@
 import { redirect } from "react-router-dom";
 import { getUser } from "../utils/getUser";
 
-export const myCoursesLoader = async () => {
+export const myCoursesLoader = async ({request}) => {
+  const pathname = new URL(request.url).pathname;
   const user = await getUser();
   if(user){
     return null;
   }
-  return redirect('/login?redirectTo=/my-courses');// query parameter || search parameter
+  // pathname shoule not be hardcoded
+  // Nothing should be hardcoded
+  return redirect(`/login?redirectTo=${pathname}`);// query parameter || search parameter
 }
 
 const MyCourses = () => {
