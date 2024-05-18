@@ -18,7 +18,7 @@ function RootLayout() {
             <NavLink to={"login"}>Login</NavLink>
           </li>
           <li>
-            <NavLink to={"mycourses"}>MyCourses</NavLink>
+            <NavLink to={"my-courses"}>MyCourses</NavLink>
           </li>
         </ul>
       </nav>

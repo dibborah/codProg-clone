@@ -8,6 +8,7 @@ import {
 import { About, Home, Login, MyCourses, Signup } from "./pages";
 import RootLayout from "./layout/RootLayout";
 import { loginAction, loginLoader } from "./pages/Login";
+import { myCoursesLoader } from "./pages/MyCourses";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,7 +22,10 @@ const router = createBrowserRouter(
        loader={loginLoader}
       />
       <Route path="signup" element={<Signup />} />
-      <Route path="/mycourses" element={<MyCourses />} />
+      <Route path="/my-courses"
+        element={<MyCourses />}
+        loader={myCoursesLoader}
+         />
     </Route>
   )
 );
