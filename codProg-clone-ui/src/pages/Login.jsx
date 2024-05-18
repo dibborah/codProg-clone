@@ -23,8 +23,10 @@ export const loginLoader = async () => {
 export const loginAction = async ({ request }) => {
   const url = request.url;  
   const redirectTo = new URL(url).searchParams.get('redirectTo') || '/';// new URL object is made // This is JS
+  console.log(request);
   const data = await request.formData();
-  // console.log("data", data); // This gives us an object with get value in its prototype
+  // This gives us an object with get value in its prototype
+  console.log("data", data); // This gives us an object with get value in its prototype
   const credentails = {
     email: data.get("email"),
     password: data.get("password"),
@@ -74,7 +76,6 @@ function Login() {
   const navigation = useNavigation();
   const location = useLocation();
   const loginURL = location.pathname + location.search;
-  console.log('navigation', navigation);
   const isSubmitting = navigation.state === 'submitting';
   return (
     // replace word replace kar dega current page ko aane wale page se

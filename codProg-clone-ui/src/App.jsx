@@ -10,6 +10,7 @@ import RootLayout from "./layout/RootLayout";
 import { loginAction, loginLoader } from "./pages/Login";
 import { myCoursesLoader } from "./pages/MyCourses";
 import { profileLoader } from "./pages/Profile";
+import { signupAction, signupLoader } from "./pages/Signup";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,12 @@ const router = createBrowserRouter(
        action={loginAction}
        loader={loginLoader}
       />
-      <Route path="signup" element={<Signup />} />
+      <Route 
+        path="signup"
+        element={<Signup />}
+        loader={signupLoader}
+        action={signupAction}
+      />
       <Route path="/my-courses"
         element={<MyCourses />}
         loader={myCoursesLoader}
