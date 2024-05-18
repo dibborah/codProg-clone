@@ -31,7 +31,12 @@ export const loginAction = async ({ request }) => {
         "Content-Type": "application/json",
       },
     });
-    const { access_token, refresh_token, expires_at, user : { id: user_id } } = response.data;
+    const { 
+      access_token,
+      refresh_token,
+      expires_at,
+      user : { id: user_id }
+    } = response.data;
     const user = { access_token, refresh_token, expires_at, user_id };
     // localStorage
     // sessionStorage
@@ -57,9 +62,10 @@ export const loginAction = async ({ request }) => {
 
 function Login() {
   const data = useActionData();
-  // console.log(data);
   return (
-    <Form method="POST" action="/login">
+    // replace word replace kar dega current page ko aane wale page se
+    <Form method="POST" action="/login" replace>
+      <h1>Login Page</h1>
       <div>
         <input
           type="text"
@@ -89,10 +95,9 @@ function Login() {
 export default Login;
 
 /**
-  <p>{data?.error}</p>// We be emptity evalutes in HTML DOM Elements unnecessarily
- * 
+ * <p>{data?.error}</p>// We be emptity evalutes in HTML DOM Elements unnecessarily
  * undefined never evaluates
- *    {data?.error}
-endpoint ke .../v1 => Is the Base URL
+ * {data?.error}
+   endpoint ke .../v1 => Is the Base URL
 */
 
