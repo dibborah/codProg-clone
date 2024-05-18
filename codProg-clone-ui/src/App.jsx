@@ -5,10 +5,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { About, Home, Login, MyCourses, Signup } from "./pages";
+import { About, Home, Login, MyCourses, Signup, Profile } from "./pages";
 import RootLayout from "./layout/RootLayout";
 import { loginAction, loginLoader } from "./pages/Login";
 import { myCoursesLoader } from "./pages/MyCourses";
+import { profileLoader } from "./pages/Profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +26,11 @@ const router = createBrowserRouter(
       <Route path="/my-courses"
         element={<MyCourses />}
         loader={myCoursesLoader}
-         />
+      />
+      <Route path="/profile"
+        element={<Profile />}
+        loader={profileLoader}
+      />
     </Route>
   )
 );

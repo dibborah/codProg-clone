@@ -20,6 +20,9 @@ function RootLayout() {
           <li>
             <NavLink to={"my-courses"}>MyCourses</NavLink>
           </li>
+          <li>
+            <NavLink to={"profile"}>Profile</NavLink>
+          </li>
         </ul>
       </nav>
       <Outlet />
