@@ -4,7 +4,6 @@ import { SIGNUP_URL, SUPABASE_API_KEY } from "../constants";
 import { getUser } from "../utils/getUser";
 
 export const signupLoader = async ({request}) => {
-  // Need to test this redirection after signup
   const user = await getUser();
   if(user){
     return redirect('/');
@@ -30,14 +29,13 @@ export const signupAction = async ({ request }) => {
         "Content-Type": "application/json"
       },
     });
-    console.log(response)
-    if(response?.identities && response.identities.length === 0){
+    const data = response.data;
+    if(data?.identities && data.identities.length === 0){
       // havenot tested this error
       // test this first
       // signup with already signed up user email
       return {error: "This email already exist"};
     }
-    // test this 2nd
     return {message: 'Please confirm your email and login'}
   } catch (error) {
     return {error: error.message};    
