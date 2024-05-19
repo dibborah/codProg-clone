@@ -1,3 +1,4 @@
+import { useRouteLoaderData } from "react-router-dom";
 import { requireAuth } from "../utils/requireAuth";
 
 export const myCoursesLoader = async ({request}) => {
@@ -9,6 +10,8 @@ export const myCoursesLoader = async ({request}) => {
 }
 
 const MyCourses = () => {
+  const data = useRouteLoaderData('parentRouteData');
+  console.log('Data from myCourses', data);
   return <div>MyCourses</div>;
 };
 
