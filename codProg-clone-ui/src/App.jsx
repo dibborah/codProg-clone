@@ -12,11 +12,11 @@ import { myCoursesLoader } from "./pages/MyCourses";
 import { profileLoader } from "./pages/Profile";
 import { signupAction, signupLoader } from "./pages/Signup";
 import { getUser } from "./utils/getUser";
-import { logoutLoader } from "./pages/Logout";
+import { logoutAction } from "./pages/Logout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(// What ever function is passed in loader in Route's parent component is accessed within its every children component
-    <Route path="/" element={<RootLayout/>} loader={getUser} id="parentRouteData">
+    <Route path="/" element={<RootLayout/>} loader={getUser} id="parentRoute">
       <Route index element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route
@@ -35,11 +35,11 @@ const router = createBrowserRouter(
         element={<MyCourses />}
         loader={myCoursesLoader}
       />
-      <Route path="/profile"
+      <Route path="/profile" 
         element={<Profile />}
         loader={profileLoader}
       />
-      <Route path="login" loader={logoutLoader}/>
+      <Route path="logout" action={logoutAction}/>
     </Route>
   )
 );

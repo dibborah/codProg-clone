@@ -23,10 +23,7 @@ export const loginLoader = async () => {
 export const loginAction = async ({ request }) => {
   const url = request.url;  
   const redirectTo = new URL(url).searchParams.get('redirectTo') || '/';// new URL object is made // This is JS
-  console.log(request);
   const data = await request.formData();
-  // This gives us an object with get value in its prototype
-  console.log("data", data); // This gives us an object with get value in its prototype
   const credentails = {
     email: data.get("email"),
     password: data.get("password"),

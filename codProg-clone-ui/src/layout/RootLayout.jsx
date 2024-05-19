@@ -2,8 +2,7 @@ import { Fragment } from "react";
 import { Form, NavLink, Outlet, useRouteLoaderData } from "react-router-dom";
 
 function RootLayout() {
-  const user = useRouteLoaderData("parentRouteData");// This is also not working
-  console.log('user', user);
+  const user = useRouteLoaderData("parentRoute");// This is also not working
   return (
     <main>
       <nav>
@@ -39,8 +38,13 @@ function RootLayout() {
             )
           }
         </ul>
-        <Form action="/login" method="POST">
-          <button type="submit">Logout</button></Form>
+        {
+          user && (
+            <Form action="/logout" method="POST">
+              <button>Logout</button>
+            </Form>
+          )
+        }
       </nav>
       <Outlet />
     </main>
