@@ -25,8 +25,8 @@ export const signupAction = async ({ request }) => {
   try {
     const response = await axios.post(SIGNUP_URL, newUser, {
       headers: {
-        apiKey: SUPABASE_API_KEY,
-        "Content-Type": "application/json"
+        apiKey: SUPABASE_API_KEY,// Check why this line is not
+        "Content-Type": "application/json"// check why this is in inverted commas
       },
     });
     const data = response.data;
