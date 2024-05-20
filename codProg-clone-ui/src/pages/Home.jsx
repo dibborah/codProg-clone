@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GET_ALL_COURSES, SUPABASE_API_KEY } from "../constants";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export async function homeLoader() {
   const { data } = await axios.get(GET_ALL_COURSES, {
@@ -20,7 +20,7 @@ function Home() {
         <p>Name: {name}</p>
         <p>Description: {description}</p>
         <p>Price: {amount} {currency}</p>
-        <button>View Course</button>
+        <Link to={`course-detail/${id}`}>View Course</Link>
         <hr />
       </div>
     })}
