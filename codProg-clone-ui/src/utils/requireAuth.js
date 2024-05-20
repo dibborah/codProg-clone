@@ -7,4 +7,4 @@ export const requireAuth = async ({redirectTo}) => {
     // throw breaks the execution in the line it is executed
     throw redirect(`/login?redirectTo=${redirectTo}`);// query parameter || search parameter
   }
-} 
+};
