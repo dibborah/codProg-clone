@@ -1,4 +1,4 @@
-import { useRouteLoaderData } from "react-router-dom";
+// import { useRouteLoaderData } from "react-router-dom";
 import { requireAuth } from "../utils/requireAuth";
 
 export const myCoursesLoader = async ({request}) => {
@@ -10,7 +10,7 @@ export const myCoursesLoader = async ({request}) => {
 }
 
 const MyCourses = () => {
-  const data = useRouteLoaderData('parentRoute');
+  // const data = useRouteLoaderData('parentRoute');
   // This way we can use Parent route data in children components as well by providing id
   return <div>MyCourses</div>;
 };

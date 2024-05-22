@@ -15,6 +15,7 @@ import { getUser } from "./utils/getUser";
 import { logoutAction } from "./pages/Logout";
 import { homeLoader } from "./pages/Home";
 import { courseDetailLoader } from "./pages/CourseDetail";
+import Payment from "./pages/Payment";
 
 const router = createBrowserRouter(
   createRoutesFromElements( // What ever function is passed in loader in Route's parent component is accessed within its every children component
@@ -46,6 +47,7 @@ const router = createBrowserRouter(
         loader={profileLoader}
       />
       <Route path="logout" action={logoutAction}/>
+      <Route path="/payment/:courseId" element={<Payment />}/>
     </Route>
   )
 );
