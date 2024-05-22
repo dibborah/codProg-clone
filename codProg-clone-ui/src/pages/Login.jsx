@@ -21,7 +21,7 @@ export const loginLoader = async () => {
 };
 
 export const loginAction = async ({ request }) => {
-  const url = request.url;  
+  const url = request.url;
   const redirectTo = new URL(url).searchParams.get('redirectTo') || '/';// new URL object is made // This is JS
   const data = await request.formData();
   const credentails = {
@@ -78,6 +78,8 @@ function Login() {
     // replace word replace kar dega current page ko aane wale page se
     <Form method="POST" action={loginURL} replace>
       <h1>Login Page</h1>
+      <p>firstuser@mailinator.com</p>
+      <p>React@123</p>
       <div>
         <input
           type="text"
@@ -97,7 +99,7 @@ function Login() {
         />
       </div>
       <div>
-        <input type="submit" value={isSubmitting ? 'Submitting...' : 'Login'} disabled={isSubmitting}/>
+        <input type="submit" value={isSubmitting ? 'Submitting...' : 'Login'} disabled={isSubmitting} />
       </div>
       {data && data.error && <p>{data.error}</p>}
     </Form>

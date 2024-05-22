@@ -4,3 +4,4 @@ export const LOGOUT_URL = BASE_URL + "auth/v1/logout";
 export const LOGIN_URL = BASE_URL + "auth/v1/token?grant_type=password";
 export const SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBsd3hpY3F2d2N4Z25tenppeHd5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU0NTgxNzgsImV4cCI6MjAzMTAzNDE3OH0.49gwol_cjAcD9yj7yWlF4zUL9dX9DOjVEd8IeEaIzBE"
 export const GET_ALL_COURSES = BASE_URL + "rest/v1/courses?select=*";
+export const STRIPE_PUBLISHABLE_KEY = 'pk_test_51PCxb0SDjms1pTN0PfXUvGXX2Rcp45rlFHHnJJJm3341UaFXO5SK2mrTBvI2dao2aEE9yAJb61w3AQOmcjmnU6TU00RQiJidNp';

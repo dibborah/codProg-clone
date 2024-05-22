@@ -1,7 +1,7 @@
 // import { useRouteLoaderData } from "react-router-dom";
 import { requireAuth } from "../utils/requireAuth";
 
-export const myCoursesLoader = async ({request}) => {
+export const myCourseLoader = async ({request}) => {
   const pathname = new URL(request.url).pathname;
   // pathname shoule not be hardcoded
   // Nothing should be hardcoded

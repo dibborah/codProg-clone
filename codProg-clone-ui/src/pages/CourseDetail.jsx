@@ -10,7 +10,7 @@ export async function courseDetailLoader({ params }) {
             apiKey: SUPABASE_API_KEY
         }
     });
-    return {modules, courseId}
+    return {modules, }
 }
 
 const CourseDetail = () => {

@@ -12,7 +12,7 @@ const refreshToken = async () => {
         }
     })
     const { access_token, expires_at, refresh_token } = data;
-    console.log("access_token from refreshToken fc", access_token);
+    // console.log("access_token from refreshToken fc", access_token);
     localStorage.setItem('user', JSON.stringify({ access_token, expires_at, refresh_token }));
     return access_token;
 }

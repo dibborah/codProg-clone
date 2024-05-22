@@ -1,59 +1,67 @@
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
   Route,
   RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
 } from "react-router-dom";
-
-import { About, Home, Login, MyCourses, Signup, Profile, CourseDetail } from "./pages";
-import RootLayout from "./layout/RootLayout";
+import { About, Home, Login, MyCourses, Signup, Profile } from "./pages";
 import { loginAction, loginLoader } from "./pages/Login";
-import { myCoursesLoader } from "./pages/MyCourses";
+import { myCourseLoader } from "./pages/MyCourses";
 import { profileLoader } from "./pages/Profile";
 import { signupAction, signupLoader } from "./pages/Signup";
-import { getUser } from "./utils/getUser";
 import { logoutAction } from "./pages/Logout";
+import { getUser } from "./utils/getUser";
 import { homeLoader } from "./pages/Home";
-import { courseDetailLoader } from "./pages/CourseDetail";
-import Payment from "./pages/Payment";
+import CourseDetail, { courseDetailLoader } from "./pages/CourseDetail";
+import Payment, { paymentLoader } from "./pages/Payment";
+import Thankyou from "./pages/Thankyou";
+import RootLayout from "./layout/RootLayout";
 
 const router = createBrowserRouter(
-  createRoutesFromElements( // What ever function is passed in loader in Route's parent component is accessed within its every children component
-    <Route path="/" element={<RootLayout/>} loader={getUser} id="parentRoute">
-      <Route index element={<Home />} loader={homeLoader}/>
-      <Route path="/about" element={<About />} />
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />} loader={getUser} id="parentRoute">
+      <Route index element={<Home />} loader={homeLoader} />
+      <Route path="about" element={<About />} />
+      <Route path="profile" element={<Profile />} loader={profileLoader} />
+
       <Route
-       path="/login"
-       element={<Login />}
-       action={loginAction}
-       loader={loginLoader}
+        path="login"
+        element={<Login />}
+        action={loginAction}
+        loader={loginLoader}
       />
-      <Route 
+      <Route
         path="signup"
         element={<Signup />}
-        loader={signupLoader}
         action={signupAction}
+        loader={signupLoader}
       />
-      <Route path="/my-courses"
+      <Route path="logout" action={logoutAction} />
+      <Route
+        path="my-courses"
         element={<MyCourses />}
-        loader={myCoursesLoader}
+        loader={myCourseLoader}
       />
-      <Route path="/course-detail/:id"
+      <Route
+        path="/course-detail/:id"
         element={<CourseDetail />}
         loader={courseDetailLoader}
       />
-      <Route path="/profile" 
-        element={<Profile />}
-        loader={profileLoader}
+      <Route
+        path="/payment/:courseId"
+        element={<Payment />}
+        loader={paymentLoader}
       />
-      <Route path="logout" action={logoutAction}/>
-      <Route path="/payment/:courseId" element={<Payment />}/>
+      <Route path="thankyou" element={<Thankyou />} />
     </Route>
   )
 );
 
 function App() {
-  return <RouterProvider router={router}>App</RouterProvider>;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
-
 export default App;
