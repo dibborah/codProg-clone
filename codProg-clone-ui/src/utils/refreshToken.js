@@ -11,9 +11,9 @@ const refreshToken = async () => {
             "Content-Type": "application/json"
         }
     })
-    const { access_token, expires_at, refresh_token } = data;
+    const { access_token, expires_at, refresh_token, user: { id: user_id} } = data;
     // console.log("access_token from refreshToken fc", access_token);
-    localStorage.setItem('user', JSON.stringify({ access_token, expires_at, refresh_token }));
+    localStorage.setItem('user', JSON.stringify({ access_token, expires_at, refresh_token, user_id }));
     return access_token;
 }
 

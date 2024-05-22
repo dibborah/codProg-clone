@@ -12,6 +12,7 @@ import { requireAuth } from "../utils/requireAuth";
 import isTokenExpired from "../utils/isTokenExpired";
 import refreshToken from "../utils/refreshToken";
 import axios from "axios";
+import { Fragment } from "react";
 export async function paymentLoader({ request, params }) {
   const pathname = new URL(request.url).pathname;
   await requireAuth({ redirectTo: pathname });
@@ -52,14 +53,14 @@ function Payment() {
     return <h1>{error}</h1>;
   }
   return (
-    <>
+    <Fragment>
       <h1>React Stripe and the Payment Element</h1>
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm />
         </Elements>
       )}
-    </>
+    </Fragment>
   );
 }
 

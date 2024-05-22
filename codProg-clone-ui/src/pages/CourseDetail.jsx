@@ -3,6 +3,7 @@ import { BASE_URL, SUPABASE_API_KEY } from "../constants";
 import { Link, useLoaderData } from "react-router-dom";
 
 export async function courseDetailLoader({ params }) {
+    // console.log(params);
     const { id: courseId } = params;
     const endpoint = BASE_URL + `rest/v1/modules?course_id=eq.${courseId}&select=*`;
     const { data: modules } = await axios.get(endpoint, {
@@ -10,7 +11,7 @@ export async function courseDetailLoader({ params }) {
             apiKey: SUPABASE_API_KEY
         }
     });
-    return {modules, }
+    return {modules, courseId}
 }
 
 const CourseDetail = () => {
