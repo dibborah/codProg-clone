@@ -5,14 +5,14 @@ import refreshToken from "../utils/refreshToken";
 import { requireAuth } from "../utils/requireAuth";
 import { BASE_URL, SUPABASE_API_KEY } from "../constants";
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 export const myCourseLoader = async ({ request }) => {
   const pathname = new URL(request.url).pathname;
   // pathname shoule not be hardcoded
   // Nothing should be hardcoded
   await requireAuth({ redirectTo: pathname });
-  let { access_token, expires_at, refresh_token, user_id } = await getUser();
+  let { access_token, expires_at, user_id } = await getUser();
   if (isTokenExpired(expires_at)) {
     access_token = await refreshToken();
   }
@@ -43,6 +43,7 @@ export const myCourseLoader = async ({ request }) => {
   // 2. my-courses
 
   const myCoursesEndpoint = `${BASE_URL}rest/v1/courses?id=in.%28${courseNumbers}%29`;
+  
   const { data: myCourses } = await axios.get(myCoursesEndpoint, {
     headers: {
       apiKey: SUPABASE_API_KEY,
@@ -62,7 +63,9 @@ const MyCourses = () => {
   // This way we can use Parent route data in children components as well by providing id
   return <div>
     {myCourses && myCourses.map((course) => {
-      return <div key={course.id}>Name: {course.name}</div>
+      return <Link key={course.id} to={course.id.toString()}>
+       {course.name} <br />
+      </Link>
     })}
 
   </div>;

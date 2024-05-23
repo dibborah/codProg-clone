@@ -16,6 +16,7 @@ import CourseDetail, { courseDetailLoader } from "./pages/CourseDetail";
 import Payment, { paymentLoader } from "./pages/Payment";
 import Thankyou from "./pages/Thankyou";
 import RootLayout from "./layout/RootLayout";
+import MyCourseVideos, { myCourseVideosLoader } from "./pages/MyCourseVideos";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +42,11 @@ const router = createBrowserRouter(
         path="my-courses"
         element={<MyCourses />}
         loader={myCourseLoader}
+      />
+      <Route
+        path="my-courses/:courseId"
+        element={<MyCourseVideos />}
+        loader={myCourseVideosLoader}
       />
       <Route
         path="/course-detail/:id"
