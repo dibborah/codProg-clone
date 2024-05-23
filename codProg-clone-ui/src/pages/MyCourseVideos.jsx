@@ -49,19 +49,22 @@ export const myCourseVideosLoader = async ({ request, params }) => {
 const MyCourseVideos = () => {
     const videosData = useLoaderData();
     console.log('videosData in loader', videosData)
+    // some video players
+    // plyr 
+    // HLS
+    // vimeo self player
     return (
         <div>
+            <h1>Videos Below</h1>
             {videosData && (
                 videosData.map((video) => {
-                    return <div key={video.id}>
-                        {video?.vimeo_url ?
-                            <>
-                                Name: {video.name}
-                                <ReactPlayer url={video.vimeo_url} controls/>
-                                <br />
-                            </>
-                            : null}
-                    </div>
+                    return video?.vimeo_url ?
+                        <div key={video.id}>
+                            <h2>{video.name}</h2>
+                            <ReactPlayer url={video.vimeo_url} controls />
+                            <hr />
+                        </div>
+                        : null
                 })
             )}
         </div>
