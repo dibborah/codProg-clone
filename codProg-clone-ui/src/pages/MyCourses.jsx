@@ -58,7 +58,7 @@ export const myCourseLoader = async ({ request }) => {
 
 const MyCourses = () => {
   const myCourses = useLoaderData();
-  console.log('loader myCourses', myCourses);
+  // console.log('loader myCourses', myCourses);
   // const data = useRouteLoaderData('parentRoute');
   // This way we can use Parent route data in children components as well by providing id
   return <div>

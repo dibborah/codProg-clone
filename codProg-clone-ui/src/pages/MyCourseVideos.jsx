@@ -5,6 +5,7 @@ import refreshToken from "../utils/refreshToken";
 import { requireAuth } from "../utils/requireAuth";
 import { BASE_URL, SUPABASE_API_KEY } from "../constants";
 import { useLoaderData } from "react-router-dom";
+import ReactPlayer from "react-player/vimeo";
 
 export const myCourseVideosLoader = async ({ request, params }) => {
     const pathname = new URL(request.url).pathname
@@ -46,10 +47,24 @@ export const myCourseVideosLoader = async ({ request, params }) => {
 }
 
 const MyCourseVideos = () => {
-    const videosData = useLoaderData(); 
+    const videosData = useLoaderData();
     console.log('videosData in loader', videosData)
     return (
-        <div>MyCourseVideos</div>
+        <div>
+            {videosData && (
+                videosData.map((video) => {
+                    return <div key={video.id}>
+                        {video?.vimeo_url ?
+                            <>
+                                Name: {video.name}
+                                <ReactPlayer url={video.vimeo_url} controls/>
+                                <br />
+                            </>
+                            : null}
+                    </div>
+                })
+            )}
+        </div>
     )
 }
 
