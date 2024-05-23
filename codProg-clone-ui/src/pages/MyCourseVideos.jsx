@@ -46,7 +46,7 @@ export const myCourseVideosLoader = async ({ request, params }) => {
 }
 
 const MyCourseVideos = () => {
-    const videosData = useLoaderData();
+    const videosData = useLoaderData(); 
     console.log('videosData in loader', videosData)
     return (
         <div>MyCourseVideos</div>
